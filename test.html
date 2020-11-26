@@ -80,3 +80,17 @@ echo "</table>";
 //echo "</div>";
 }
 ?>
+$sum = 0;
+ $sql = 'select PNUMBER from PRODUCT';
+
+ $result = mysql_query($sql);
+
+ while($resultarray = mysql_fetch_array($result)){
+
+   $sum += (int)$resultarray['PNUMBER'];
+
+ }
+
+ echo $sum;
+
+?>
