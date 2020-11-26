@@ -1,30 +1,82 @@
-<html>
-<head>
-  <title>ITF Lab</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-<body background="15.png">
-<div class="container" style="padding-top: 100px;">
-    <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th><div align="center">Name</div></th>
-            <th><div align="center">Comment</div></th>
-            <th><div align="center">Link</div></th>
-            <th><div align="center">Action</div></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="background-color: seashell;">
-            <td><?php echo $result['Name'];?></td>
-            <td>dsfdsf</td>
-            <td>dffsd</td>
-</table>
-</body>
-</html>
+<div class="valid-feedback">Valid.</div> 
+<!-- ขึ้นสีแดงแบบ google form ให้กรอก -->
+
+<div class="invalid-feedback">Please fill out this field.</div>
+<!-- หลังจากกด submit แล้วถ้ายังไม่กรอกจะขึ้นแดง -->
+
+<label class="form-check-label">
+    <input class="form-check-input" type="checkbox"> Remember me
+  </label>
+<!-- กล่องติ้กเช่น ติ้ก Remember me type radio เป็นวงกลม -->
+
+<form class="form-inline" action="/action_page.php"></form>
+<!-- ต้องการให้ทุกอย่างใน form นี้อยู่บรรทัดเดียวกัน -->
+primary สีฟ้า success เขียว info ฟ้าอ่อน danger แดง warning เขียว secondary เทา
+
+<!-- A grey horizontal navbar that becomes vertical on small screens -->
+<nav class="navbar navbar-expand-sm bg-light">
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 3</a>
+      </li>
+    </ul>
+  </nav>
+  .justify-content-center ให้มัน center
+<!-- To add links inside the navbar, use a <ul> element with class="navbar-nav".
+Then add <li> elements with a .nav-item class followed by an <a> element with a .nav-link class: -->
+
+    <div class="form-group">
+    <label for="sel1">Select list:</label>
+    <select class="form-control" id="sel1">
+      <option>1</option>
+      <option>2</option>
+    </select>
+  </div>
+<!-- เลือกจากคอลัมน์ -->
+
+<input type="text" class="form-control form-control-sm">
+<input type="text" class="form-control form-control">
+<input type="text" class="form-control form-control-lg">
+<!-- เพิ่มขนาดช่อง input form -->
+
+<input type="range" class="form-control-range">
+<input type="file" class="form-control-file border">
+<!-- 1. range 2. add file เช่น รูปภาพ -->
+
+
+<?php
+mysql_connect("localhost,"root","root") or die ("ไม่สามาติดต่อได้");
+mysql_select_db("test");
+mysql_query("SET NAMES UTF8");//ให้รู้จักว่าเป็น utf8
+
+
+$sql = "SELECT * FROM place ;";
+$result = mysql_query($sql);
+if(!$result){
+echo "ผิดพลาดในการอ่านฐานข้อมูล";
+
+}
+else if(mysql_num_rows($result)==0){
+echo "ไม่มี่ฐานข้อมูล";
+}
+else {
+
+//echo "<div style='display:none'>";
+echo "<table border = 1 cellpadding = 2 >";
+while ($data = mysql_fetch_row($result)){
+echo "<tr>";
+echo "<td>{$data[0]}</td><td>{$data[1]}</td>";
+echo "</tr>";
+
+}
+echo "</table>";
+//echo "</div>";
+}
+?>
